@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+
 import ReactDOM from 'react-dom';
 import TeamMembers from './components/TeamMembers';
 import TeamMemberForm from './components/TeamMemberForm';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [teamMembers, setTeamMembers] = useState([
@@ -29,13 +31,40 @@ function App() {
     };
     setTeamMembers([...teamMembers, newTeamMember]);
   }
+
+  const [memberToEdit, setMemberToEdit] = useState({
+    name:'',
+    role:'',
+    email:''
+})
+
+  const [isEditing, setIsEditing] = useState(false)
+
+  const chooseMemberToEdit = (member) => {
+    setMemberToEdit(member)
+    setIsEditing(true)
+  }
+
+  const editMember = member => {
+    teamMembers.map( teamMember => {
+      if(teamMember.id == member.id)
+      {
+        teamMember.name = member.name;
+        teamMember.role = member.role;
+        teamMember.email = member.email;
+      }
+    })
+  }
+
   return (
     <div className="App">
      <h1>Team Builder</h1>
-     <TeamMemberForm addNewTeamMember={addNewTeamMember}/>
-     <TeamMembers teamMembers={teamMembers}/>
+     <TeamMemberForm addNewTeamMember={addNewTeamMember} />
+     <TeamMembers teamMembers={teamMembers} />
     </div>
   );
 }
 
 export default App;
+// memberToEdit={memberToEdit} isEditing={isEditing} editMember={editMember}
+// chooseMemberToEdit={chooseMemberToEdit}

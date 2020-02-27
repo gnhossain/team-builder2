@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TeamMemberForm = props => {
     console.log('this is our props',props);
@@ -8,6 +8,11 @@ const TeamMemberForm = props => {
        role:'',
        email:''
    });
+
+//    useEffect( () => {
+//        setTeamMember({name: props.memberToEdit.name, role: props.memberToEdit.role, email: props.memberToEdit.email})
+//    }, [props.memberToEdit])
+   
    //onChange handler to control inputs
    const handleChanges = event => {
        setTeamMember({ ...teamMember, [event.target.name]: event.target.value});
@@ -16,9 +21,15 @@ const TeamMemberForm = props => {
    //submitform to control prevent default
    const submitForm = event => {
        event.preventDefault();
-       props.addNewTeamMember(teamMember);//members are from setState
-       setTeamMember({name:'', role:'', email:'',});
-       console.log(event.target.value);
+    //    if(props.isEditing === true){
+    //        props.editMember({...teamMember, id:props.memberToEdit.id});
+    //        setTeamMember({name:'', role:'', email:'',});
+           
+    //    }
+    //    else
+        props.addNewTeamMember(teamMember);//members are from setState
+        setTeamMember({name:'', role:'', email:'',});
+        console.log(event.target.value);
    };
    return (
        //makes form with placeholder
@@ -48,7 +59,6 @@ const TeamMemberForm = props => {
             value={teamMember.email}
         />
         <button type='submit'>Add Team Member</button>
-        <button type='edit'>Edit Team Member</button>
     </form>
    );
 };
