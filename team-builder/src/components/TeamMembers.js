@@ -6,7 +6,7 @@ const TeamMembers = props => {
         <div className='teamMember-list'>
             {props.teamMembers.map(teamMember => (
                 <div className='teamMember' key={teamMember.id}>
-                    <h2>{teamMember.name}</h2>
+                    <h2>Name:{teamMember.name}</h2>
                     <p>Role: {teamMember.role}</p>
                     <p>Email:{teamMember.email}</p>
                 </div>
@@ -14,3 +14,4 @@ const TeamMembers = props => {
         </div>
     )
 }
+export default TeamMembers;

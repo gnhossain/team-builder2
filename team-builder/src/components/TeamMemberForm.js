@@ -48,6 +48,7 @@ const TeamMemberForm = props => {
             value={teamMember.email}
         />
         <button type='submit'>Add Team Member</button>
+        <button type='edit'>Edit Team Member</button>
     </form>
    );
 };
